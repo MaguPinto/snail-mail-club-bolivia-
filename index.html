@@ -272,9 +272,9 @@ const PRECIO_NUM=150;        // precio de una edición pasada, sin envío
 const ENVIO_NUM=20;          // lo que suma el envío (150 + 20 = 170 con envío)
 const DESCUENTO_2_O_MAS=20;  // se descuenta una vez al llevar 2 o más en el mismo envío
 // URL de tu Google Sheet publicado como CSV (ver instrucciones). Si la dejas vacía se usan los datos de abajo.
-const SHEET_URL="";
+const SHEET_URL="hoja-ediciones.csv";
 // Datos de respaldo (se usan si no hay hoja o si falla la carga)
-let ACTUAL={mes:"Octubre",nombre:"Brotes de primavera",foto:"edicion-actual.jpg",precio:130,conEnvio:150,preventa:"",entrega:"",desc:""};
+let ACTUAL={mes:"Octubre",nombre:"Lago de los Cisnes",foto:"edicion-actual.jpg",precio:130,conEnvio:150,preventa:"",entrega:"",desc:"Aunque el diseño cambia todos los meses, esta edición está inspirada en las hadas y en ese pequeño encanto de encontrar algo mágico dentro del buzón. ✨"};
 let PROXIMA={mes:"Noviembre",nombre:"",foto:"",precio:80,conEnvio:99,preventa:"fecha por confirmar",entrega:"por definir",desc:""};
 // Suscripción por adelantado: precio en Cochabamba y precio con envío al resto de Bolivia (total por todos los meses)
 const PLANES_SUSC=[{meses:3,precio:240,conEnvio:299},{meses:6,precio:480,conEnvio:599}];
