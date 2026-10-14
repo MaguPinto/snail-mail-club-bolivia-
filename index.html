@@ -61,7 +61,7 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <header class="top"><div class="topin">
 <a class="brand" href="#inicio">Café con Letras<span class="bsub"> - Club por correspondencia</span></a>
 <div class="topr"><a class="homebtn" href="#inicio">🏠 Inicio</a><a class="cartbtn" id="cartbtn" href="#reservar" aria-label="Mi pedido">🛒<span class="cartcount" id="cartcount" hidden>0</span></a><button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></div>
-<nav class="nav" id="menu" aria-label="Navegación"><a href="#inicio">Inicio</a><a href="#club">El Club</a><a href="#sobre">Edición actual</a><a href="#preventa" id="nav-pre">Próxima edición</a><a href="#pasadas">Ediciones anteriores</a><a href="#suscripcion">Suscripción</a><a href="#faq">Preguntas</a><a href="#sobremi">Sobre mí</a></nav>
+<nav class="nav" id="menu" aria-label="Navegación"><a href="#inicio">Inicio</a><a href="#club">El Club</a><a href="#sobre">Edición actual</a><a href="#preventa" id="nav-pre">Próxima edición</a><a href="#pasadas">Ediciones anteriores</a><a href="#suscripcion">Suscripción</a><a href="#faq">Preguntas</a><a href="#estado" id="nav-estado">Estado de mi pedido</a><a href="#sobremi">Sobre mí</a></nav>
 </div></header>
 
 <main>
@@ -81,6 +81,7 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <a class="tile" href="#pasadas"><span class="te">🍂</span><strong>Ediciones anteriores</strong><small>Hasta agotar stock</small></a>
 <a class="tile" href="#suscripcion"><span class="te">🎟️</span><strong>Suscripción</strong><small>3 o 6 meses por adelantado</small></a>
 <a class="tile" href="#faq"><span class="te">☕</span><strong>Preguntas</strong><small>Todo lo que necesitas saber</small></a>
+<a class="tile" href="#estado" id="tile-estado"><span class="te">📦</span><strong>Estado de mi pedido</strong><small>Sigue tu envío con tu celular</small></a>
 <a class="tile" href="#sobremi"><span class="te">🧸</span><strong>Sobre mí</strong><small>Cómo nació el club</small></a>
 </div></section>
 
@@ -92,6 +93,17 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <article class="mini"><div class="icon">🌷</div><h3>Papelería bonita</h3><p>Cada edición combina una temática con detalles para disfrutar y usar.</p></article>
 <article class="mini"><div class="icon">🤝</div><h3>Comunidad</h3><p>Un espacio para compartir cartas, creatividad y nuevas conexiones.</p></article>
 </div></div></section>
+
+<section id="estado"><div class="card">
+<p class="eyebrow">Seguimiento</p><h2>Estado de mi pedido 📦</h2>
+<p class="soft">Escribe el número de celular con el que hiciste tu pedido y te mostramos cómo va.</p>
+<form id="estado-form" class="form" novalidate style="margin-top:14px">
+<div><label for="estado-tel">Tu número de celular</label><input id="estado-tel" type="tel" inputmode="tel" placeholder="Ej: 70012345" autocomplete="tel"></div>
+<button class="submit" type="submit" id="estado-btn">Ver mi pedido</button>
+</form>
+<p id="estado-error" role="alert" hidden style="background:#fdecea;color:#a33;border-radius:12px;padding:12px;font-size:14px;font-weight:700;margin:12px 0 0"></p>
+<div id="estado-res" style="display:grid;gap:12px;margin-top:16px"></div>
+</div></section>
 
 <section id="sobremi"><div class="card">
 <p class="eyebrow">Sobre mí</p><h2>Hola, soy Magu 💌</h2>
@@ -206,6 +218,9 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <div id="extras-nombres" hidden></div>
 <button id="agregar-otro" class="btn secondary" type="button" style="width:100%">➕ Agregar otro producto a mi pedido</button>
 </div>
+<div><label for="ig">Tu usuario de Instagram</label><input id="ig" type="text" placeholder="@tuusuario" autocomplete="off" autocapitalize="none" required><small style="color:var(--suave)">Por ahí te confirmamos tu pedido 💌</small></div>
+<div><label for="cel">Tu número de celular</label><input id="cel" type="tel" inputmode="tel" placeholder="Ej: 70012345" autocomplete="tel" required><small style="color:var(--suave)">Con este número podrás ver el estado de tu pedido en la página 📦</small></div>
+<div style="position:absolute;left:-9999px" aria-hidden="true"><input id="web" type="text" tabindex="-1" autocomplete="off"></div>
 <div><label for="ubicacion">¿Dónde estás?</label><select id="ubicacion" required><option value="">Selecciona una opción</option><option value="cocha">Vivo en Cochabamba</option><option value="otro">Vivo en otro departamento</option></select></div>
 
 <div id="bloque-cocha" class="conditional"><p class="conditionalTitle">📍 Si estás en Cocha</p>
@@ -227,7 +242,15 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <div class="qrbox" id="pago-qrbox"><img id="pago-qr" src="" alt="QR para pagar tu pedido"><p id="pago-qrtext"></p></div>
 <ol class="pasos" id="pago-pasos"></ol>
 <textarea id="respaldo" readonly rows="6" style="display:none;width:100%;margin:10px 0;padding:12px;border:1px solid var(--lav);border-radius:14px;font:inherit;background:#fff"></textarea>
+<div id="pago-subir" hidden>
+<label for="comprobante" style="font-weight:800">📎 Sube tu comprobante de pago</label>
+<input id="comprobante" type="file" accept="image/*,application/pdf" style="margin:8px 0">
+<small style="color:var(--suave)">Captura de pantalla o foto (JPG/PNG) o PDF.</small>
+<p id="pago-error" role="alert" hidden style="background:#fdecea;color:#a33;border-radius:12px;padding:12px;font-size:14px;font-weight:700;margin:10px 0 0"></p>
+</div>
 <button id="pago-enviar" class="submit" type="button">Ya pagué: copiar pedido y abrir Instagram</button>
+<button id="pago-ig" class="linkbtn" type="button" hidden>Prefiero enviarlo por Instagram</button>
+<div id="pago-ok" class="notice" hidden style="text-align:center;padding:22px"><h3 style="margin:0 0 8px">¡Pedido recibido! 💌</h3><p id="pago-ok-texto" style="margin:0 0 10px"></p><p style="margin:0 0 14px;font-size:14px">📦 Puedes ver cómo va tu pedido en <a href="#estado">Estado de mi pedido</a> con tu número de celular.</p><a class="btn primary" href="#inicio">Volver al inicio</a></div>
 <button id="pago-editar" class="linkbtn" type="button">← Editar mi pedido</button>
 </div></div></section>
 </main>
@@ -249,7 +272,7 @@ menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",cerrarMenu));
 document.addEventListener("click",(e)=>{if(!menu.contains(e.target))cerrarMenu();});
 document.addEventListener("keydown",(e)=>{if(e.key==="Escape")cerrarMenu();});
 // ====== Páginas: cada sección se muestra como una página ======
-const PAGINAS={inicio:["inicio","tiles"],club:["club"],sobremi:["sobremi"],sobre:["sobre"],preventa:["preventa"],pasadas:["pasadas"],suscripcion:["suscripcion"],faq:["faq"],reservar:["reservar"]};
+const PAGINAS={inicio:["inicio","tiles"],club:["club"],sobremi:["sobremi"],estado:["estado"],sobre:["sobre"],preventa:["preventa"],pasadas:["pasadas"],suscripcion:["suscripcion"],faq:["faq"],reservar:["reservar"]};
 const ALIAS={pago:"reservar"};
 let paginaActual=null;
 function mostrar(hash){
@@ -466,6 +489,10 @@ $("pdp-reservar").addEventListener("click",()=>{
 });
 renderPasadas();
 const INSTAGRAM_URL="https://ig.me/m/magupinto";
+// ====== PEDIDOS EN GOOGLE DRIVE (ver INSTRUCCIONES.md) ======
+// Pega aquí la URL de tu Apps Script (termina en /exec). Si la dejas vacía, se usa el envío por Instagram de antes.
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycby_rvxivdcoJkS0lR-uzM-GvDTQVBPp4yKB0424xeuHhYkkrpN0M7rEdRk-lWmiryVm/exec";
+const APPS_SCRIPT_CLAVE="cafeletrasmagu"; // debe ser igual a CONFIG.CLAVE en Codigo.gs
 const respaldo=document.getElementById("respaldo");
 const form=document.getElementById("order-form");
 const ubicacion=document.getElementById("ubicacion");
@@ -698,6 +725,13 @@ function mostrarPago(p){
   ["Toca el botón de abajo: copiamos tu pedido y se abre Instagram.","Pega el mensaje en el chat y envíalo.","Te confirmamos el monto exacto y te enviamos el QR para pagar."].forEach(t=>{const li=document.createElement("li");li.textContent=t;pasos.appendChild(li);});
   boton.textContent="Copiar pedido y abrir Instagram";
  }
+ if(usaDrive()){
+  $("pago-subir").hidden=false;$("pago-ig").hidden=false;errPago("");
+  const ps=$("pago-pasos");ps.innerHTML="";
+  [`Escanea el QR con la app de tu banco e ingresa el monto exacto: ${p.total} Bs.`,"Sube aquí abajo tu captura o PDF del comprobante.","Toca «Subir pago y continuar». Te confirmamos tu pedido por Instagram."].forEach(t=>{const li=document.createElement("li");li.textContent=t;ps.appendChild(li);});
+  $("pago-enviar").textContent="Subir pago y continuar";
+ }
+ ["pago-resumen","pago-qrbox","pago-pasos"].forEach(x=>$(x).hidden=false);$("pago-ok").hidden=true;$("pago-enviar").hidden=false;$("pago-editar").hidden=false;
  form.hidden=true;$("pago").hidden=false;
  $("pago").scrollIntoView({behavior:"smooth",block:"start"});
 }
@@ -717,7 +751,7 @@ form.addEventListener("submit",(e)=>{
  mostrarPago(pedidoActual);
 });
 $("pago-editar").addEventListener("click",()=>{$("pago").hidden=true;form.hidden=false;respaldo.style.display="none";irA("reservar");});
-$("pago-enviar").addEventListener("click",async()=>{
+async function enviarPorInstagram(){
  if(!pedidoActual)return;
  const b=$("pago-enviar"), original=b.textContent;
  b.disabled=true;
@@ -732,7 +766,82 @@ $("pago-enviar").addEventListener("click",async()=>{
   if(!$("ig-respaldo")){const link=document.createElement("a");link.id="ig-respaldo";link.href=INSTAGRAM_URL;link.target="_blank";link.rel="noopener noreferrer";link.className="btn secondary";link.style.cssText="width:100%;margin-top:10px";link.textContent="📸 Abrir Instagram";b.after(link);}
  }
  setTimeout(()=>{b.disabled=false;b.textContent=original;},4000);
+}
+
+// ---- Subir pedido + comprobante a Google Drive ----
+const usaDrive=()=>!!APPS_SCRIPT_URL;
+function leerArchivoBase64(file){
+ return new Promise((ok,mal)=>{
+  const fin=(blob,tipo)=>{const r=new FileReader();r.onload=()=>ok({tipo,nombre:file.name,base64:String(r.result).split(",")[1]});r.onerror=()=>mal(new Error("No se pudo leer el archivo"));r.readAsDataURL(blob);};
+  if(file.type==="application/pdf"){if(file.size>4*1024*1024)return mal(new Error("El PDF pesa más de 4 MB. Mándalo como captura de pantalla."));return fin(file,file.type);}
+  if(!file.type.startsWith("image/"))return mal(new Error("Sube una imagen (JPG/PNG) o un PDF."));
+  const img=new Image(),u=URL.createObjectURL(file);
+  img.onload=()=>{const M=1600,k=Math.min(1,M/Math.max(img.width,img.height));const cv=document.createElement("canvas");cv.width=Math.round(img.width*k);cv.height=Math.round(img.height*k);cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);URL.revokeObjectURL(u);cv.toBlob(bl=>bl?fin(bl,"image/jpeg"):mal(new Error("No se pudo procesar la imagen")),"image/jpeg",.82);};
+  img.onerror=()=>{URL.revokeObjectURL(u);mal(new Error("No se pudo abrir la imagen. Prueba con otra captura."));};
+  img.src=u;
+ });
+}
+function armarPayload(comp){
+ const items=carrito.map(it=>{const P=precioItem(it),m=it.susc?1:it.q;return {etiqueta:it.label,cantidad:m,nombres:it.nombres,precio:m*P.precio,direccion:it.envio?textoEnvio(it.envio).replace(/\n/g," · "):""};});
+ const usaMain=carrito.some(it=>!it.envio);
+ return {clave:APPS_SCRIPT_CLAVE,web:$("web").value,instagram:$("ig").value,celular:$("cel").value,items,total:pedidoActual.total,
+  ubicacion:usaMain?(ubicacion.value==="cocha"?"Cochabamba":"Otro departamento"):"Varias direcciones",
+  envio:usaMain?textoEnvio(null).replace(/\n/g," · "):"",mensaje:pedidoActual.mensaje,comprobante:comp};
+}
+function errPago(t){const e=$("pago-error");e.textContent=t;e.hidden=!t;}
+async function subirPedido(){
+ if(!pedidoActual)return;
+ const f=$("comprobante").files[0];
+ if(!f){errPago("Primero sube tu comprobante de pago.");return;}
+ const b=$("pago-enviar"),orig=b.textContent;b.disabled=true;b.textContent="Subiendo… un momento ✨";errPago("");
+ try{
+  const comp=await leerArchivoBase64(f);
+  const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),60000);
+  const r=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(armarPayload(comp)),signal:ctl.signal});
+  clearTimeout(to);
+  const j=await r.json();
+  if(!j.ok)throw new Error(j.error||"No se pudo guardar tu pedido.");
+  $("pago-ok-texto").textContent=`Tu código de pedido es ${j.id}. Revisaremos tu pago y te confirmamos por Instagram (@${$("ig").value.replace(/^@+/,"")}) pronto.`;
+  ["pago-resumen","pago-qrbox","pago-pasos","pago-subir"].forEach(x=>$(x).hidden=true);
+  b.hidden=true;$("pago-ig").hidden=true;$("pago-editar").hidden=true;$("pago-ok").hidden=false;
+  carrito.length=0;renderCarrito();$("pago").scrollIntoView({behavior:"smooth",block:"start"});
+ }catch(err){
+  errPago((err&&err.name==="AbortError"?"Tardó demasiado. Revisa tu conexión e inténtalo otra vez.":(err&&err.message)||"No se pudo subir.")+" Si sigue fallando, usa «Prefiero enviarlo por Instagram».");
+  b.disabled=false;b.textContent=orig;
+ }
+}
+$("pago-enviar").addEventListener("click",()=>{usaDrive()?subirPedido():enviarPorInstagram();});
+$("pago-ig").addEventListener("click",enviarPorInstagram);
+// ---- Estado del pedido por celular ----
+if(!usaDrive()){const ne=$("nav-estado"),te=$("tile-estado");if(ne)ne.style.display="none";if(te)te.style.display="none";}
+function iconoEstado(e){return {"Verificando pago":"🔎","Pago verificado":"✅","Preparando tu sobre":"✂️","Coordinando entrega":"📍","Enviado":"📦","Entregado":"🎉","Cancelado":"✖️"}[e]||"💌";}
+$("estado-form").addEventListener("submit",async ev=>{
+ ev.preventDefault();
+ const er=$("estado-error"),res=$("estado-res"),tel=$("estado-tel").value.replace(/\D/g,"");
+ res.innerHTML="";er.hidden=true;
+ if(!usaDrive()){er.textContent="Esta función aún no está activa.";er.hidden=false;return;}
+ if(tel.length<8){er.textContent="Escribe tu número de celular completo (8 dígitos).";er.hidden=false;return;}
+ const b=$("estado-btn");b.disabled=true;b.textContent="Buscando…";
+ try{
+  const r=await fetch(`${APPS_SCRIPT_URL}?accion=estado&clave=${encodeURIComponent(APPS_SCRIPT_CLAVE)}&tel=${encodeURIComponent(tel)}`);
+  const j=await r.json();
+  if(!j.ok)throw new Error(j.error||"No se pudo consultar.");
+  if(!j.pedidos.length){er.textContent="No encontramos pedidos con ese número. Revisa que sea el mismo que pusiste al pedir, o escríbenos por Instagram. 💌";er.hidden=false;}
+  j.pedidos.forEach(p=>{
+   const c=document.createElement("div");c.className="carritoItem";c.style.cssText="display:grid;gap:8px";
+   const h=document.createElement("div");h.style.cssText="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap";
+   const a=document.createElement("strong");a.textContent=`Pedido ${p.id}`;const f=document.createElement("small");f.style.color="var(--suave)";f.textContent=p.fecha;h.appendChild(a);h.appendChild(f);c.appendChild(h);
+   const pr=document.createElement("small");pr.style.color="var(--suave)";pr.textContent=p.productos;c.appendChild(pr);
+   const st=document.createElement("div");st.className="notice";st.style.margin="0";
+   const t=document.createElement("strong");t.textContent=`${iconoEstado(p.estado)} ${p.estado}`;const d=document.createElement("div");d.textContent=String(p.detalle||"").replace(/^[^\p{L}¡¿]+/u,"");d.style.marginTop="4px";st.appendChild(t);st.appendChild(d);c.appendChild(st);
+   if(p.guia){const g=document.createElement("div");g.style.cssText="background:#fff;border:1.5px dashed var(--borde);border-radius:12px;padding:10px 12px";g.innerHTML="📮 <strong>N° de guía:</strong> ";const sp=document.createElement("span");sp.textContent=p.guia;sp.style.cssText="font-weight:800;letter-spacing:.5px;user-select:all";g.appendChild(sp);const n=document.createElement("small");n.style.cssText="display:block;color:var(--suave);margin-top:4px";n.textContent="Con este número puedes seguir tu envío en Correos de Bolivia.";g.appendChild(n);c.appendChild(g);}
+   if(p.nota){const n=document.createElement("p");n.style.margin="0";n.textContent="💬 "+p.nota;c.appendChild(n);}
+   res.appendChild(c);
+  });
+ }catch(err){er.textContent=(err&&err.message)||"No se pudo consultar. Inténtalo otra vez.";er.hidden=false;}
+ b.disabled=false;b.textContent="Ver mi pedido";
 });
+
 }
 main();
 </script>
