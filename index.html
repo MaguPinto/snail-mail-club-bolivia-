@@ -843,6 +843,33 @@ $("estado-form").addEventListener("submit",async ev=>{
 });
 
 }
+function actualizarEstadoPreventaPorDia() {
+    const hoy = new Date();
+    const diaActual = hoy.getDate(); // Día del mes actual (1 al 31)
+
+    // Ajusta aquí los días de preventa (por ejemplo, del día 20 al 30 de cada mes)
+    const esEpocaPreventa = (diaActual >= 14 && diaActual <= 25);
+
+    const seccionPreventa = document.getElementById("preventa");
+    const btnPreAdd = document.getElementById("pre-addcart");
+    const tilePreventa = document.getElementById("tile-preventa");
+    const navPreventa = document.getElementById("nav-pre");
+
+    if (esEpocaPreventa) {
+        if (seccionPreventa) seccionPreventa.removeAttribute("hidden");
+        if (btnPreAdd) btnPreAdd.style.display = "";
+        if (tilePreventa) tilePreventa.style.display = "";
+        if (navPreventa) navPreventa.style.display = "";
+    } else {
+        if (seccionPreventa) seccionPreventa.setAttribute("hidden", "true");
+        if (btnPreAdd) btnPreAdd.style.display = "none";
+        if (tilePreventa) tilePreventa.style.display = "none";
+        if (navPreventa) navPreventa.style.display = "none";
+    }
+}
+
+actualizarEstadoPreventaPorDia();
+
 main();
 </script>
 </body>
