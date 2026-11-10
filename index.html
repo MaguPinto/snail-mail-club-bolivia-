@@ -128,7 +128,7 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <p id="act-desc">Aunque el diseño cambia todos los meses, esta edición está inspirada en el lago de los cisnes en la dualidad de Odette y Odile 🦢🩰🖤</p>
 <h3>✨ Tu sobre incluye</h3>
 <ul class="list">
-<li>💌 1 carta contándote mis anécdotas o algún pensamiento</li><li>🎧 1 Receiptify con recomendaciones de canciones</li><li>💖 4 stickers waterproof de la temática del mes</li><li>🖼️ 1 postal con una ilustración hecha por mi con la temática del mes</li><li>🍄 1 lámina de stickers de la temática del mes</li><li>✏️ 4 láminas aleatorias de stickers para tu journal</li><li>📓 1 mini cuadernillo de notas</li><li>🎨 1 actividad</li><li>🎟️ 1 ticket de bienvenida al club para nuevas miembros</li>
+<li>💌 1 carta contándote mis anécdotas o algún pensamiento</li><li>🎧 1 Receiptify con recomendaciones de canciones</li><li>💖 4 stickers waterproof de la temática del mes</li><li>🖼️ 1 postal calendario con la temática del mes</li><li>🍄 1 lámina de stickers de la temática del mes</li><li>✏️ 4 láminas aleatorias de stickers para tu journal</li><li>📓 1 mini cuadernillo de notas</li><li>🎨 1 actividad</li><li>🎟️ 1 ticket de bienvenida al club para nuevas miembros</li>
 </ul>
 <div class="price" id="act-precio"><strong>💸 Precio</strong><br>130 Bs · 150 Bs con envío a otras ciudades.</div>
 <p id="act-fechas"><strong>✴️ Quedan 10 unidades ✴️</strong><br>📦 Los tiempos de entrega para este pedido son de 2-5 días hábiles, tanto para entregas locales como para envíos departamentales.</p>
@@ -175,7 +175,7 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <li>1 carta contándote mis anécdotas o algún pensamiento</li>
 <li>1 Receiptify con recomendaciones de canciones</li>
 <li>4 stickers waterproof de la temática del mes</li>
-<li>1 postal con una ilustración hecha por mi con la temática del mes</li>
+<li>1 postal calendario con la temática del mes</li>
 <li>1 lámina de stickers de la temática del mes</li>
 <li>4 láminas aleatorias de stickers para tu journal</li>
 <li>1 mini cuadernillo de notas</li>
@@ -225,7 +225,7 @@ section#inicio{padding:0;margin-top:14px;position:relative}.doodles{position:abs
 <div id="extras-nombres" hidden></div>
 <button id="agregar-otro" class="btn secondary" type="button" style="width:100%">➕ Agregar otro producto a mi pedido</button>
 </div>
-<div><label for="ig">Tu usuario de Instagram</label><input id="ig" type="text" placeholder="@tuusuario" autocomplete="off" autocapitalize="none" required><small style="color:var(--suave)">Por ahí te confirmamos tu pedido 💌</small></div>
+<div><label for="ig">Tu correo electrónico</label><input id="ig" type="email" inputmode="email" placeholder="tucorreo@gmail.com" autocomplete="email" autocapitalize="none" required><small style="color:var(--suave)">Te enviamos la confirmación de tu pedido y, si es envío, podrás descargar tu guía 💌</small></div>
 <div><label for="cel">Tu número de celular</label><input id="cel" type="tel" inputmode="tel" placeholder="Ej: 70012345" autocomplete="tel" required><small style="color:var(--suave)">Con este número podrás ver el estado de tu pedido en la página 📦</small></div>
 <div style="position:absolute;left:-9999px" aria-hidden="true"><input id="web" type="text" tabindex="-1" autocomplete="off"></div>
 <div><label for="ubicacion">¿Dónde estás?</label><select id="ubicacion" required><option value="">Selecciona una opción</option><option value="cocha">Vivo en Cochabamba</option><option value="otro">Vivo en otro departamento</option></select></div>
@@ -327,7 +327,7 @@ const PRECIO_NUM=150;        // precio de una edición pasada, sin envío
 const ENVIO_NUM=20;          // lo que suma el envío (150 + 20 = 170 con envío)
 const DESCUENTO_2_O_MAS=20;  // se descuenta una vez al llevar 2 o más en el mismo envío
 // ====== Conexión con tu Google Apps Script (pedidos, stock y precios en vivo desde tu hoja) ======
-const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwAUmdgT2UebZIj-9ppLDWbgDUVT84zHUKf0TkSXxeUEVAYuMC2es9O0ucAV-6VNLwx/exec";
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzcc9JnoQ0dRj4__5FXZepI_B0Fmw9WXH8QkbqtHflk-0QfNYNkHEvI1Tjd--aBFyYv/exec";
 const APPS_SCRIPT_CLAVE="cafeletrasmagu"; // debe ser igual a CONFIG.CLAVE en Codigo.gs
 let LIVE=false, PREVENTA_FORZADA=null;   // los llena la hoja: modo live y botón de próxima edición (null = automático por fechas)
 // URL de tu Google Sheet publicado como CSV (ver instrucciones). Si la dejas vacía se usan los datos de abajo.
@@ -764,7 +764,7 @@ function mostrarPago(p){
  if(usaDrive()){
   $("pago-subir").hidden=false;$("pago-ig").hidden=false;errPago("");
   const ps=$("pago-pasos");ps.innerHTML="";
-  [`Escanea el QR con la app de tu banco e ingresa el monto exacto: ${p.total} Bs.`,"Sube aquí abajo tu captura o PDF del comprobante.","Toca «Subir pago y continuar». Te confirmamos tu pedido por Instagram."].forEach(t=>{const li=document.createElement("li");li.textContent=t;ps.appendChild(li);});
+  [`Escanea el QR con la app de tu banco e ingresa el monto exacto: ${p.total} Bs.`,"Sube aquí abajo tu captura o PDF del comprobante.","Toca «Subir pago y continuar». Te enviamos la confirmación por correo."].forEach(t=>{const li=document.createElement("li");li.textContent=t;ps.appendChild(li);});
   $("pago-enviar").textContent="Subir pago y continuar";
  }
  ["pago-resumen","pago-qrbox","pago-pasos"].forEach(x=>$(x).hidden=false);$("pago-ok").hidden=true;$("pago-enviar").hidden=false;$("pago-editar").hidden=false;
@@ -820,9 +820,30 @@ function leerArchivoBase64(file){
 function armarPayload(comp){
  const items=carrito.map(it=>{const P=precioItem(it),m=it.susc?1:it.q;return {etiqueta:it.label,val:it.susc?"":it.val,cantidad:m,nombres:it.nombres,precio:m*P.precio,direccion:it.envio?textoEnvio(it.envio).replace(/\n/g," · "):""};});
  const usaMain=carrito.some(it=>!it.envio);
- return {clave:APPS_SCRIPT_CLAVE,web:$("web").value,instagram:$("ig").value,celular:$("cel").value,items,total:pedidoActual.total,
+ return {clave:APPS_SCRIPT_CLAVE,web:$("web").value,correo:$("ig").value.trim(),celular:$("cel").value,items,total:pedidoActual.total,
   ubicacion:usaMain?(ubicacion.value==="cocha"?"Cochabamba":"Otro departamento"):"Varias direcciones",
   envio:usaMain?textoEnvio(null).replace(/\n/g," · "):"",mensaje:pedidoActual.mensaje,comprobante:comp};
+}
+function cajaGuia(id,tel,viaIG){
+ const w=document.createElement("div");w.style.cssText="background:#fff;border:1.5px solid var(--borde);border-radius:12px;padding:10px 12px;display:grid;gap:8px";
+ const t=document.createElement("strong");t.textContent="📎 Tu guía de envío está lista";w.appendChild(t);
+ const sm=document.createElement("small");sm.style.color="var(--suave)";sm.textContent=viaIG?"Escribe el usuario de Instagram que usaste en tu pedido (ej. @tuusuario) para descargarla.":"Escribe el correo que usaste en tu pedido para descargarla.";w.appendChild(sm);
+ const em=document.createElement("input");em.type=viaIG?"text":"email";em.placeholder=viaIG?"@tuusuario":"tucorreo@gmail.com";em.autocomplete=viaIG?"off":"email";em.autocapitalize="none";w.appendChild(em);
+ const b=document.createElement("button");b.type="button";b.className="submit";b.textContent="⬇️ Descargar mi guía";w.appendChild(b);
+ const er=document.createElement("small");er.style.color="#b84536";er.hidden=true;w.appendChild(er);
+ b.addEventListener("click",async()=>{
+  er.hidden=true;const mail=em.value.trim();
+  if(!mail){er.textContent=viaIG?"Escribe tu usuario de Instagram.":"Escribe tu correo.";er.hidden=false;return;}
+  b.disabled=true;b.textContent="Preparando…";
+  try{
+   const r=await fetch(`${APPS_SCRIPT_URL}?accion=guia&clave=${encodeURIComponent(APPS_SCRIPT_CLAVE)}&tel=${encodeURIComponent(tel)}&id=${encodeURIComponent(id)}&correo=${encodeURIComponent(mail)}`);
+   const j=await r.json();if(!j.ok)throw new Error(j.error||"No se pudo descargar.");
+   const bin=atob(j.base64),u8=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+   const url=URL.createObjectURL(new Blob([u8],{type:j.tipo})),a=document.createElement("a");a.href=url;a.download=j.nombre;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);
+  }catch(err){er.textContent=(err&&err.message)||"No se pudo descargar. Inténtalo otra vez.";er.hidden=false;}
+  b.disabled=false;b.textContent="⬇️ Descargar mi guía";
+ });
+ return w;
 }
 function errPago(t){const e=$("pago-error");e.textContent=t;e.hidden=!t;}
 async function subirPedido(){
@@ -837,7 +858,7 @@ async function subirPedido(){
   clearTimeout(to);
   const j=await r.json();
   if(!j.ok)throw new Error(j.error||"No se pudo guardar tu pedido.");
-  $("pago-ok-texto").textContent=`Tu código de pedido es ${j.id}. Revisaremos tu pago y te confirmamos por Instagram (@${$("ig").value.replace(/^@+/,"")}) pronto.`;
+  $("pago-ok-texto").textContent=`Tu código de pedido es ${j.id}. Revisaremos tu pago y te enviamos la confirmación a ${$("ig").value.trim()} (revisa también spam). 💌`;
   ["pago-resumen","pago-qrbox","pago-pasos","pago-subir"].forEach(x=>$(x).hidden=true);
   b.hidden=true;$("pago-ig").hidden=true;$("pago-editar").hidden=true;$("pago-ok").hidden=false;
   carrito.length=0;renderCarrito();$("pago").scrollIntoView({behavior:"smooth",block:"start"});
@@ -862,8 +883,8 @@ $("estado-form").addEventListener("submit",async ev=>{
   const r=await fetch(`${APPS_SCRIPT_URL}?accion=estado&clave=${encodeURIComponent(APPS_SCRIPT_CLAVE)}&tel=${encodeURIComponent(tel)}`);
   const j=await r.json();
   if(!j.ok)throw new Error(j.error||"No se pudo consultar.");
-  if(!j.pedidos.length){er.textContent="No encontramos pedidos con ese número. Revisa que sea el mismo que pusiste al pedir, o escríbenos por Instagram. 💌";er.hidden=false;}
-  j.pedidos.forEach(p=>{
+  if(!j.pedidos.length){er.textContent="No encontramos pedidos con ese número. Revisa que sea el mismo que pusiste al pedir, o escríbenos por Instagram (@magupinto). 💌";er.hidden=false;}
+  j.pedidos.forEach((p,pi)=>{
    const c=document.createElement("div");c.className="carritoItem";c.style.cssText="display:grid;gap:8px";
    const h=document.createElement("div");h.style.cssText="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap";
    const a=document.createElement("strong");a.textContent=`Pedido ${p.id}`;const f=document.createElement("small");f.style.color="var(--suave)";f.textContent=p.fecha;h.appendChild(a);h.appendChild(f);c.appendChild(h);
@@ -881,6 +902,7 @@ $("estado-form").addEventListener("submit",async ev=>{
     k.appendChild(m);c.appendChild(k);
    }
    if(p.guia){const g=document.createElement("div");g.style.cssText="background:#fff;border:1.5px dashed var(--borde);border-radius:12px;padding:10px 12px";g.innerHTML="📮 <strong>N° de guía:</strong> ";const sp=document.createElement("span");sp.textContent=p.guia;sp.style.cssText="font-weight:800;letter-spacing:.5px;user-select:all";g.appendChild(sp);const n=document.createElement("small");n.style.cssText="display:block;color:var(--suave);margin-top:4px";n.textContent="Con este número puedes seguir tu envío en Correos de Bolivia.";g.appendChild(n);c.appendChild(g);}
+   if(p.guiaArchivo&&pi===0){c.appendChild(cajaGuia(p.id,tel,p.viaIG));}
    if(p.nota){const n=document.createElement("p");n.style.margin="0";n.textContent="💬 "+p.nota;c.appendChild(n);}
    res.appendChild(c);
   });
